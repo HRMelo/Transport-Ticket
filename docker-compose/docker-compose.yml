@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  eureka-server:
+    image: eureka-server
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - transporttickernetwork
+  zuul:
+    image: zuul
+    ports:
+      - "9000:8000"
+    restart: always
+    networks:
+      - transporttickernetwork
+  pricegenerator:
+    image: pricegenerator-service
+    ports:
+      - "8001:8001"
+    restart: always
+    networks:
+      - transporttickernetwork
+  transportmanager:
+    image: transportmanager-service
+    ports:
+      - "8002:8002"
+    restart: always
+    networks:
+      - transporttickernetwork
+networks:
+  transporttickernetwork:
